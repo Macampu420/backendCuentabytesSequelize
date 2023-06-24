@@ -1,7 +1,15 @@
 import schemaCliente from "../models/Clientes.js";
 
-export const traerClientes = function(req, res){
-    res.send('hola')
+export const traerClientes = async function(req, res){
+
+    try {
+        const clientes = await schemaCliente.findAll();
+    
+        res.status(200).json(clientes);
+    } catch (error) {
+        res.status(500).json({mensaje: error.message});
+    }
+
 }
 
 export const registrarCliente = async function(req, res){
@@ -15,12 +23,10 @@ export const registrarCliente = async function(req, res){
             telefonoCliente
         });
 
-        console.log(nuevoCliente);
-
-        res.status(200).end();
+        res.status(200).json(nuevoCliente);
     } catch (error) {
         console.log(error);
-        res.status(500).json({mensaje: 'ocurrió un error al registrar el cliente, por favor intentalo más tarde'});
+        res.status(500).json({mensaje: error.message});
     }
 
 }

@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize('cuentabytes', 'postgres', 'macampu123', {
+const sequelize = new Sequelize('cuentabytessequelize', 'root', '', {
     host: '127.0.0.1',
-    dialect: 'postgres'
+    dialect: 'mysql'
   });
 
 export default sequelize;
